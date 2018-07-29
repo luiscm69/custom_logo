@@ -12,6 +12,7 @@
   *     improved error handling
  * v1.3 inspired by Fabien Amann (rholala_logo) adopted "toplogo" from larry skin
   *     MN: changed to jquery and added common_logo as default fallback in case custom_logo fails
+ * v1.4 LC: change over jquery: function .error() deprecated
  */
 
 class custom_logo extends rcube_plugin
@@ -68,7 +69,7 @@ class custom_logo extends rcube_plugin
                     $addstr .=   'if ($(logo).length == 0 ) return;';
 		    $addstr .=   '$(logo).hide();';
 		    if ( $this->common_logo ) {
-                      $addstr .= '$(logo).error(function() {';
+                      $addstr .= '$(logo).on(\'error\',function() {';
         	      $addstr .=   '$(logo).hide();';
     	    	      $addstr .=   '$(logo).attr("src",\''.$this->common_logo.'\');';
     	    	      $addstr .=   '$(logo).show();';
